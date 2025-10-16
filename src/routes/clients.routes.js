@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createClientC, getAllClientC, getOneC, removeClientC, updateClientC } from "../controllers/client.controllers.js";
+import { validateObjectId } from "../middlewares/validateObjectId.js";
 
 const router = Router();
 
@@ -8,9 +9,9 @@ router.route('/')
 .post(createClientC)
 
 router.route('/:id')
-.get(getOneC)
-.put(updateClientC)
-.delete(removeClientC)
+.get( validateObjectId ,getOneC)
+.put(validateObjectId, updateClientC)
+.delete(validateObjectId, removeClientC)
 
 
 export default router;
