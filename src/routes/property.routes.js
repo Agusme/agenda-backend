@@ -6,17 +6,19 @@ import {
   remove,
   update,
 } from "../controllers/property.controllers.js";
+import { validateObjectId } from "../middlewares/validateObjectId.js";
+import { propertyValidationRules, validateProperty } from "../middlewares/validateProperty.js";
 
 const router = Router();
 
 router.route('/')
 .get(getAll)
-.post(create)
+.post(propertyValidationRules, validateProperty, create);
 
 router.route('/:id')
-.get(getOne)
-.put(update)
-.delete(remove)
+.get(validateObjectId, getOne)
+.put(validateObjectId, propertyValidationRules, validateProperty, update)
+.delete(validateObjectId, remove)
 
 
 export default router;
