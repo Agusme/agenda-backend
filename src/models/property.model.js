@@ -2,12 +2,12 @@ import mongoose, { Schema } from "mongoose";
 
 const propertySchema = new Schema({
   typeProperty: {
-    require: true,
+    required: true,
     type: String,
     enum: ["Casa", "Departamento", "Terreno", "Local"],
   },
-  TypeTransaction: {
-    require: true,
+  typeTransaction: {
+    required: true,
     type: String,
     enum: ["Venta", "Alquiler"],
   },
@@ -20,10 +20,10 @@ const propertySchema = new Schema({
   location: {
     require: true,
     type: String,
-    maxlenght: 100,
+    maxlength: 100,
   },
   description: {
-    require: true,
+    required: true,
     type: String,
   },
   map: {
