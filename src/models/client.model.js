@@ -20,6 +20,11 @@ const clientSchema = new Schema({
     enum: ["Compra", "Alquiler"],
     required: [true, "El tipo de transacción es obligatorio"],
   },
+   typeProperty: {
+    required: [true, "El tipo de propiedad es obligatorio"],
+    type: String,
+    enum: ["Casa", "Departamento", "Terreno", "Local"],
+  },
   notes: {
     type: String,
     maxlength: [300, "Las notas no pueden tener más de 300 caracteres"],

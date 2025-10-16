@@ -1,6 +1,15 @@
 import mongoose, { Schema } from "mongoose";
 
-const propertySchema = new Schema({
+const propertySchema = new Schema({ 
+  ownerName: {
+    type: String,
+    required: [true, "El nombre del propietario es obligatorio"],
+    maxlength: [100, "El nombre del propietario no puede tener más de 100 caracteres"],
+  },
+  ownerPhone: {
+    type: String,
+    maxlength: [20, "El teléfono no puede tener más de 20 caracteres"],
+  },
   typeProperty: {
     required: [true, "El tipo de propiedad es obligatorio"],
     type: String,
