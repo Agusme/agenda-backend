@@ -20,6 +20,7 @@ export const create = async(req, res)=>{
 
 export const getOne = async(req, res)=>{
     try {
+        
         const property = await propertyService.getPropertyById(req.params.id);
         if(!property)
             return res.status(404).json({message:'Propiedad no encontrada'});
@@ -31,8 +32,15 @@ export const getOne = async(req, res)=>{
 
 export const update = async(req, res)=>{
     try {
-        const updated= await propertyService.updateProperty(req.para.id, req.body)
-        res.status(200).json(updated)
+         const id = req.params.id.trim(); 
+
+    const updated = await propertyService.updateProperty(id, req.body);
+
+    if (!updated) {
+      return res.status(404).json({ message: "Propiedad no encontrada" });
+    }
+
+    res.status(200).json({message:'Propiedad actualizada'});
     } catch (error) {
         res.status(400).json({message:'Error al actualizar propiedad', error})
     }
